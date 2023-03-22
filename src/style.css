@@ -17,6 +17,7 @@
   /* BEGIN VARIABLES */
   --slider-padding: 5rem;
   --text-light-bg: #242424;
+  --text-dark-bg: #fff;
   --handle-size: 3rem;
   --img-gap: 0.25rem;
   /* END VARIABLES */
@@ -30,6 +31,7 @@
 
 body {
   margin: 0;
+  background-color: #333;
 }
 
 .container {
