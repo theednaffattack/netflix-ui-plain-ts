@@ -50,7 +50,7 @@ body {
 
 .slider > img {
   flex: 0 0 calc(100% / var(--items-per-screen));
-  max-width: 25%;
+  max-width: calc(100% / var(--items-per-screen));
   aspect-ratio: 16 / 9;
   padding: var(--img-gap);
 }
