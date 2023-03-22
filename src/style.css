@@ -35,6 +35,7 @@ body {
 }
 
 .slider {
+  --slider-index: 0;
   display: flex;
   /* width: calc(100% - 2 * var(--slider-padding)); */
   flex-grow: 1;
