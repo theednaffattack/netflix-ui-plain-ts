@@ -43,13 +43,15 @@ function onHandleClick(handle: Element) {
     // Right handler button
     if (slider && handle.classList.contains("right-handle")) {
       const sliderChildrenCount = slider.children.length;
-      const elementsInView = 4;
+      const itemsPerScreen = parseInt(
+        getComputedStyle(slider).getPropertyValue("--items-per-screen")
+      );
 
       const sliderIndex = parseInt(
         getComputedStyle(slider).getPropertyValue("--slider-index")
       );
       // Only move right if there are more elements
-      if (sliderIndex < Math.floor(sliderChildrenCount / elementsInView)) {
+      if (sliderIndex < Math.floor(sliderChildrenCount / itemsPerScreen)) {
         slider.style.setProperty(
           "--slider-index",
           (sliderIndex + 1).toString()
