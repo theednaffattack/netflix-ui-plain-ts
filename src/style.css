@@ -4,9 +4,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  /* background-color: #242424; */
-  background-color: #fff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -94,14 +91,15 @@ body {
 }
 
 .movie-grouping {
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
-  color: var(--text-light-bg);
+  color: var(--text-dark-bg);
   padding: 0.5rem calc(var(--img-gap) * 2 + var(--handle-size));
-  outline: 2px dashed limegreen;
+  width: 100%;
 }
 
 .title {
@@ -110,4 +108,21 @@ body {
 }
 
 .progress-bar {
+  display: flex;
+  margin: 0;
+  margin-left: auto;
+  gap: 0.5rem;
+  flex-direction: row;
+}
+
+.progress-item {
+  flex: 0 0 1.5rem;
+  height: 0.5rem;
+  min-width: 2.5rem;
+  margin-top: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.progress-item.active {
+  background-color: rgba(255, 255, 255, 0.85);
 }
