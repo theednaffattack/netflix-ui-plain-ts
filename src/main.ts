@@ -40,7 +40,6 @@ function onHandleClick(handle: Element) {
   // Confirm that container is not null
   if (container && progressBar) {
     const slider = container.querySelector<HTMLElement>(".slider");
-    console.log("VIEW SLIDER", slider);
 
     // Left handler button
     if (slider && handle.classList.contains("left-handle")) {
