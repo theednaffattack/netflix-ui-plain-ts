@@ -20,7 +20,13 @@ document.addEventListener("click", function (this, evt) {
   }
 });
 
-window.addEventListener("resize", function (this, evt) {});
+const throttledProgressBar = throttle(() => {
+  document.querySelectorAll(".progress-bar").forEach((item) => {
+    calculateProgressBar(item);
+  });
+}, 250);
+
+window.addEventListener("resize", throttledProgressBar);
 
 document.querySelectorAll(".progress-bar").forEach((item) => {
   calculateProgressBar(item);
@@ -34,7 +40,6 @@ function onHandleClick(handle: Element) {
   // Confirm that container is not null
   if (container && progressBar) {
     const slider = container.querySelector<HTMLElement>(".slider");
-    console.log("VIEW SLIDER", slider);
 
     // Left handler button
     if (slider && handle.classList.contains("left-handle")) {
@@ -107,4 +112,29 @@ function calculateProgressBar(progressBar: Element) {
     }
     progressBar.append(barItem);
   }
+}
+
+// Adapted from: https://decipher.dev/30-seconds-of-typescript/docs/throttle/
+function throttle(fn: Function, delay: number = 300) {
+  let shouldWait = false;
+  let lastFn: ReturnType<typeof setTimeout>;
+  let lastTime: number;
+  return function (this: any) {
+    const context = this;
+    const args = arguments;
+    // If it's our first run, don't throttle
+    if (!shouldWait) {
+      fn.apply(context, args);
+      lastTime = Date.now();
+      shouldWait = true;
+    } else {
+      clearTimeout(lastFn);
+      lastFn = setTimeout(() => {
+        if (Date.now() - lastTime >= delay) {
+          fn.apply(context, args);
+          lastTime = Date.now();
+        }
+      }, Math.max(delay - (Date.now() - lastTime), 0));
+    }
+  };
 }

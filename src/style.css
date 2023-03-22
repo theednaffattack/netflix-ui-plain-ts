@@ -50,7 +50,7 @@ body {
 
 .slider > img {
   flex: 0 0 calc(100% / var(--items-per-screen));
-  max-width: 25%;
+  max-width: calc(100% / var(--items-per-screen));
   aspect-ratio: 16 / 9;
   padding: var(--img-gap);
 }
@@ -126,3 +126,17 @@ body {
 .progress-item.active {
   background-color: rgba(255, 255, 255, 0.85);
 }
+
+/* BEGIN MEDIA QUERIES */
+/* @TODO: create better media query sizes */
+@media (max-width: 1000px) {
+  .slider {
+    --items-per-screen: 3;
+  }
+}
+@media (max-width: 600px) {
+  .slider {
+    --items-per-screen: 2;
+  }
+}
+/* END MEDIA QUERIES */
