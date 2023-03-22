@@ -108,3 +108,28 @@ function calculateProgressBar(progressBar: Element) {
     progressBar.append(barItem);
   }
 }
+
+// Adapted from: https://decipher.dev/30-seconds-of-typescript/docs/throttle/
+function throttle(fn: Function, delay: number = 300) {
+  let shouldWait = false;
+  let lastFn: ReturnType<typeof setTimeout>;
+  let lastTime: number;
+  return function (this: any) {
+    const context = this;
+    const args = arguments;
+    // If it's our first run, don't throttle
+    if (!shouldWait) {
+      fn.apply(context, args);
+      lastTime = Date.now();
+      shouldWait = true;
+    } else {
+      clearTimeout(lastFn);
+      lastFn = setTimeout(() => {
+        if (Date.now() - lastTime >= delay) {
+          fn.apply(context, args);
+          lastTime = Date.now();
+        }
+      }, Math.max(delay - (Date.now() - lastTime), 0));
+    }
+  };
+}
