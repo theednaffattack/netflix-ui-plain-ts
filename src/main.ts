@@ -51,7 +51,7 @@ function onHandleClick(handle: Element) {
         getComputedStyle(slider).getPropertyValue("--slider-index")
       );
       // Only move right if there are more elements
-      if (sliderIndex < Math.floor(sliderChildrenCount / itemsPerScreen)) {
+      if (sliderIndex < Math.ceil(sliderChildrenCount / itemsPerScreen)) {
         slider.style.setProperty(
           "--slider-index",
           (sliderIndex + 1).toString()
