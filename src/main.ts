@@ -20,7 +20,13 @@ document.addEventListener("click", function (this, evt) {
   }
 });
 
-window.addEventListener("resize", function (this, evt) {});
+const throttledProgressBar = throttle(() => {
+  document.querySelectorAll(".progress-bar").forEach((item) => {
+    calculateProgressBar(item);
+  });
+}, 250);
+
+window.addEventListener("resize", throttledProgressBar);
 
 document.querySelectorAll(".progress-bar").forEach((item) => {
   calculateProgressBar(item);
